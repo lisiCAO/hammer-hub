@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('./database');
+const sequelize = require('../database');
 
 const Auction = sequelize.define('auction', {
     /*
