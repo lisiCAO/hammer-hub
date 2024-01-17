@@ -62,7 +62,7 @@ A step by step series of examples that tell you how to get a development environ
 
 ## Running the Tests
 
-Explain how to run the automated tests for this system (if applicable).
+Coming soon！
 
 ## Built With
 
