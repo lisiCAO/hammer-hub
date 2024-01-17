@@ -11,7 +11,7 @@ const BidOnAuction = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(ture);
+        setIsLoading(true);
         axios.get(`/api/auctions/${id}`)
         .then((response) => {
             setAuction(response.data);
