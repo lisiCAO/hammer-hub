@@ -14,13 +14,14 @@ const AuctionsList = () => {
     
     return (
         <div>
-        <h1>Auctions</h1>
-        {auctions.map((auction) => (
-            <div key={auction.id}>
-            <h2>{auction.title}</h2>
-            <p>{auction.description}</p>
-            </div>
-        ))}
+            <h1>Auctions</h1>
+            {auctions.map((auction) => (
+                <li key={auction.id}>
+                    <h2>{auction.title}</h2>
+                    <p>{auction.description}</p>
+                    <p>{auction.lastPrice}</p>
+                </li>
+            ))}
         </div>
     );
     }
