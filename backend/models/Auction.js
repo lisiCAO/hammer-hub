@@ -27,7 +27,10 @@ const Auction = sequelize.define('auction', {
         lastBidderEmail:{
             type: Sequelize.STRING(320),
             allowNull: true
-        }
+        },
+    },
+    {
+        timestamps: false // Set timestamps to false
     }
 );
 
