@@ -9,8 +9,6 @@ module.exports = {
         itemDescription: 'A beautiful vintage lamp.',
         lastPrice: 100.00,
         lastBidderEmail: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
       },
       // ...
       
