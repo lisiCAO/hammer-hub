@@ -1,14 +1,11 @@
 const express = require('express');
+const cors  = require('cors');
 const Auction = require('./models/Auction');
 const app = express();
 app.use(express.json());
-
-/*
-GET /api/auctions
-GET /api/auction/123 (if needed)
-POST /api/auctions
-PATCH /api/auctions/123
-*/
+app.use(cors({
+    origin: 'http://localhost' 
+}));
 app.post('/api/auctions', async (req, res) => {
     try{
         const newAuction = await Auction.create(req.body);

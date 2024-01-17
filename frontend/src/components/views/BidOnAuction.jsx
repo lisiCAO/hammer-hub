@@ -7,7 +7,6 @@ const BidOnAuction = () => {
     const { id } = useParams();
     const [auction, setAuction] = useState({});
     const [bid, setBid] = useState(0); 
-    const [lastPrice, setLastPrice] = useState(0); 
     const [bidderEmail, setBidderEmail] = useState("");
 
     useEffect(() => {
@@ -67,8 +66,8 @@ const BidOnAuction = () => {
                     <input
                         type="number"
                         name="lastPrice"
-                        value={lastPrice}
-                        onChange={(event) => setLastPrice(event.target.value)}
+                        value={bid}
+                        onChange={(event) => setBid(event.target.value)}
                     />
                 </label>
                 <input type="submit" value="Submit" />
