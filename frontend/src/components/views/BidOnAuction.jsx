@@ -8,14 +8,18 @@ const BidOnAuction = () => {
     const [auction, setAuction] = useState({});
     const [bid, setBid] = useState(0); 
     const [bidderEmail, setBidderEmail] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(ture);
         axios.get(`/api/auctions/${id}`)
         .then((response) => {
             setAuction(response.data);
+            setIsLoading(false);
         })
         .catch((error) => {
             console.log(error);
+            setIsLoading(false);
         });
     }
     , [id]);
@@ -31,14 +35,16 @@ const BidOnAuction = () => {
             return;
         }
         axios.patch(`http://localhost:3000/api/auctions/${id}`, {
-            amount: bid,
-            email: bidderEmail,
+            lastPrice: bid,
+            lastBidderEmail: bidderEmail,
         })
         .then((response) => {
             setAuction(response.data);
+            setIsLoading(false);
         })
         .catch((error) => {
             console.log(error);
+            setIsLoading(false);
         });
     };
 

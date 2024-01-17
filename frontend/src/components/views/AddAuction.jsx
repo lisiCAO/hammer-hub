@@ -3,26 +3,32 @@ import axios from "axios";
 import "./AddAuction.css";
 
 const AddAuction = () => {
-    const [sellerEmail, setSellerEmail] = useState(""); // [1
-    const [itemName, setItemName] = useState("");
-    const [description, setDescription] = useState("");
-    const [startingPrice, setStartingPrice] = useState(0);
+    const [formData, setFormData] = useState({
+        sellerEmail: "",
+        itemName: "",
+        description: "",
+        startingPrice: 0,
+    })
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:3000/api/auctions", {
-            sellerEmail: sellerEmail,
-            itemName: itemName,
-            description: description,
-            lastPrice: startingPrice,
+        try {
+            const response = await axios.post("http://localhost:3000/api/auctions", {
+                sellerEmail: formData.sellerEmail,
+                itemName: formData.itemName,
+                description: formData.description,
+                lastPrice: formData.startingPrice,
         })
-        .then((response) => {
             console.log(response);
-            alert(response.itemName + " created!");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            alert(formData.itemName + "created!");
+            setFormData({sellerEmail:"", itemName: "", description: "", startingPrice: 0});
+        } catch (error) {
+         console.error(error);
+        }
+    };
+
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value});
     };
 
     return (
@@ -34,9 +40,9 @@ const AddAuction = () => {
                     <input
                         type="text"
                         name="sellerEmail"
-                        value={sellerEmail}
-                        onChange={(event) => setSellerEmail(event.target.value)}
-                        retuired
+                        value={formData.sellerEmail}
+                        onChange={handleChange}
+                        required
                     />
                 </label>
                 <label htmlFor="itemName">
@@ -44,8 +50,8 @@ const AddAuction = () => {
                     <input
                         type="text"
                         name="itemName"
-                        value={itemName}
-                        onChange={(event) => setItemName(event.target.value)}
+                        value={formData.itemName}
+                        onChange={handleChange}
                     />
                 </label>
                 <label htmlFor="description">
@@ -53,8 +59,8 @@ const AddAuction = () => {
                     <input
                         type="text"
                         name="description"
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
+                        value={formData.description}
+                        onChange={handleChange}
                     />
                 </label>
                 <label htmlFor="startingPrice">
@@ -62,8 +68,8 @@ const AddAuction = () => {
                     <input
                         type="number"
                         name="startingPrice"
-                        value={startingPrice}
-                        onChange={(event) => setStartingPrice(event.target.value)}
+                        value={formData.startingPrice}
+                        onChange={handleChange}
                     />
                 </label>
                 <input type="submit" value="Submit" />
