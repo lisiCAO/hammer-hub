@@ -10,7 +10,7 @@ const AddAuction = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("/api/auctions", {
+        await axios.post("http://localhost:3000/api/auctions", {
             sellerEmail: sellerEmail,
             itemName: itemName,
             description: description,

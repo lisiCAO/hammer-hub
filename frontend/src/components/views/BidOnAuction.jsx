@@ -31,7 +31,7 @@ const BidOnAuction = () => {
             alert("Bidder email cannot be empty!");
             return;
         }
-        axios.patch(`/api/auctions/${id}`, {
+        axios.patch(`http://localhost:3000/api/auctions/${id}`, {
             amount: bid,
             email: bidderEmail,
         })

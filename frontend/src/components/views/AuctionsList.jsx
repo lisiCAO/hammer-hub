@@ -7,7 +7,7 @@ const AuctionsList = () => {
     
     useEffect(() => {
         const fetchData = async () => {
-        const result = await axios("/api/auctions");
+        const result = await axios("http://localhost:3000/api/auctions");
         setAuctions(result.data);
         };
         fetchData();
