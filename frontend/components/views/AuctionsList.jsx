@@ -18,8 +18,6 @@ const AuctionsList = () => {
             {auctions.map((auction) => (
                 <li className="auctions-list__item" key={auction.id}>
                     <h2 className="auctions-list__item-title">{auction.title}</h2>
-                    <p className="auctions-list__item-description">{auction.description}</p>
-                    <p className="auctions-list__item-price">{auction.lastPrice}</p>
                 </li>
             ))}
         </div>
