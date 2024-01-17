@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { set } from "../../../backend/database";
+import { set } from "../../../../backend/database";
 
 const BidOnAuction = () => {
     const { id } = useParams();
     const [auction, setAuction] = useState({});
+    const [bid, setBid] = useState(0); 
     const [lastPrice, setLastPrice] = useState(0); 
     const [bidderEmail, setBidderEmail] = useState("");
 
@@ -22,8 +23,16 @@ const BidOnAuction = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if(parseFloat(bid) <= parseFloat(auction.lastPrice)) {
+            alert("Bid must be higher than current price!");
+            return;
+        }
+        if(bidderEmail === "") {
+            alert("Bidder email cannot be empty!");
+            return;
+        }
         axios.patch(`/api/auctions/${id}`, {
-            amount: lastPrice,
+            amount: bid,
             email: bidderEmail,
         })
         .then((response) => {
