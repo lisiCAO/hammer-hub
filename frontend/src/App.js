@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AuctionsList from './components/views/AuctionsList';
+import BidOnAuction from './components/views/BidOnAuction';
+import AddAuction from './components/views/AddAuction';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/auctions" component={AuctionList} />
-        <Route path="/auction/:id" component={Auction} />
+      <Routes>
+        <Route path="/auctions" component={AuctionsList} />
+        <Route path="/auction/:id" component={BidOnAuction} />
         <Route path="/add-auction" component={AddAuction} />
-      </Switch>
+      </Routes>
     </Router>
   );
 }
