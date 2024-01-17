@@ -13,17 +13,17 @@ const AuctionsList = () => {
     }, []);
     
     return (
-        <div>
-            <h1>Auctions</h1>
+        <div className="auctions-list">
+            <h1 className="auctions-list__title">Auctions</h1>
             {auctions.map((auction) => (
-                <li key={auction.id}>
-                    <h2>{auction.title}</h2>
-                    <p>{auction.description}</p>
-                    <p>{auction.lastPrice}</p>
+                <li className="auctions-list__item" key={auction.id}>
+                    <h2 className="auctions-list__item-title">{auction.title}</h2>
+                    <p className="auctions-list__item-description">{auction.description}</p>
+                    <p className="auctions-list__item-price">{auction.lastPrice}</p>
                 </li>
             ))}
         </div>
     );
-    }
+}
 
 export default AuctionsList;
