@@ -6,7 +6,7 @@ const AddAuction = () => {
     const [formData, setFormData] = useState({
         sellerEmail: "",
         itemName: "",
-        description: "",
+        itemDescription: "",
         startingPrice: 0,
     })
 
@@ -16,12 +16,12 @@ const AddAuction = () => {
             const response = await axios.post("http://localhost:3000/api/auctions", {
                 sellerEmail: formData.sellerEmail,
                 itemName: formData.itemName,
-                description: formData.description,
+                itemDescription: formData.itemDescription,
                 lastPrice: formData.startingPrice,
         })
             console.log(response);
-            alert(formData.itemName + "created!");
-            setFormData({sellerEmail:"", itemName: "", description: "", startingPrice: 0});
+            alert(formData.itemName + " created!");
+            setFormData({sellerEmail:"", itemName: "", itemDescription: "", startingPrice: 0});
         } catch (error) {
          console.error(error);
         }
@@ -54,12 +54,12 @@ const AddAuction = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <label htmlFor="description">
-                    Description:
+                <label htmlFor="itemDescription">
+                    itemDescription:
                     <input
                         type="text"
-                        name="description"
-                        value={formData.description}
+                        name="itemDescription"
+                        value={formData.itemDescription}
                         onChange={handleChange}
                     />
                 </label>

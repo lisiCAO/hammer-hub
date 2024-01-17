@@ -48,7 +48,7 @@ const BidOnAuction = () => {
         });
     };
 
-    if(!auction.id) {
+    if(isLoading) {
         return <div>Loading...</div>;
     }
 
