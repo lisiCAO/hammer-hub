@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./AddAuction.css";
 
 const AddAuction = () => {
     const [sellerEmail, setSellerEmail] = useState(""); // [1
@@ -38,7 +39,7 @@ const AddAuction = () => {
                         retuired
                     />
                 </label>
-                <label htmlFor="itemNmae">
+                <label htmlFor="itemName">
                     Item Name:
                     <input
                         type="text"

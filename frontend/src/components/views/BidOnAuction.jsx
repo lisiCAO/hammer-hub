@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { set } from "../../../../backend/database";
+import './AddAuction.css';
 
 const BidOnAuction = () => {
     const { id } = useParams();
