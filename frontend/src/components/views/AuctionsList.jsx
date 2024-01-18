@@ -1,38 +1,46 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import ApiService from "./../../services/ApiService";
 import "./AuctionsList.css";
+const AuctionItem = ({ auction }) => (
+    <li className="auctions-list__item">
+        <h2 className="auctions-list__item-title">{auction.itemName}</h2>
+        <p>{auction.itemDescription}</p>
+        <p>Last Bid: ${auction.lastPrice}</p>
+        <p>Last Bidder: {auction.lastBidderEmail}</p>
+    </li>
+);
 
 const AuctionsList = () => {
     const [auctions, setAuctions] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
-            try {      
-            const result = await axios("http://localhost:3000/api/auctions");
-            setAuctions(result.data);
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = await ApiService.fetchAuctions();
+                setAuctions(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                setError(error.message);
+            } finally {
                 setIsLoading(false);
             }
-            };
+        };
         fetchData();
     }, []);
     if(isLoading) {
         return <div>Loading...</div>
     }
+    if(error) {
+        return <div>Error loading auctions: {error}</div>
+    }
     
     return (
         <div className="auctions-list">
             <h1 className="auctions-list__title">Auctions</h1>
-            {auctions.map((auction) => (
-                <li className="auctions-list__item" key={auction.id}>
-                    <h2 className="auctions-list__item-title">{auction.itemName}</h2>
-                    <p>{auction.itemDescription}</p>
-                    <p>Last Bid: ${auction.lastPrice}</p>
-                    <p>Last Bidder: {auction.lastBidderEmail}</p>
-                </li>
-            ))}
+            {auctions.map((auction) => <AuctionItem key={auction.id} auction={auction} />)}
         </div>
     );
 }

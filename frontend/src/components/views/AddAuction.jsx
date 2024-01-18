@@ -1,27 +1,37 @@
 import React, { useState } from "react";
-import axios from "axios";
+import ApiService from "./../../services/ApiService";
 import "./AddAuction.css";
 
 const AddAuction = () => {
-    const [formData, setFormData] = useState({
+    const initialFormData = Object.freeze({
         sellerEmail: "",
         itemName: "",
         itemDescription: "",
         startingPrice: 0,
-    })
+    });
+
+    const [formData, setFormData] = useState({ ...initialFormData })
+
+    const validateEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!validateEmail(formData.sellerEmail)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        if (formData.startingPrice <= 0) {
+            alert('Starting price must be greater than zero.');
+            return;
+        }
         try {
-            const response = await axios.post("http://localhost:3000/api/auctions", {
-                sellerEmail: formData.sellerEmail,
-                itemName: formData.itemName,
-                itemDescription: formData.itemDescription,
-                lastPrice: formData.startingPrice,
-        })
+            const response = await ApiService.createAuction(formData);
             console.log(response);
-            alert(formData.itemName + " created!");
-            setFormData({sellerEmail:"", itemName: "", itemDescription: "", startingPrice: 0});
+            alert(`${formData.itemName} successfully added!`);
+            setFormData({ ...initialFormData });
         } catch (error) {
          console.error(error);
         }

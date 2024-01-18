@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
+import ApiService from "./../../services/ApiService";
 import { useParams } from "react-router-dom";
 import './AddAuction.css';
 
@@ -9,43 +10,56 @@ const BidOnAuction = () => {
     const [bid, setBid] = useState(0); 
     const [bidderEmail, setBidderEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         setIsLoading(true);
-        axios.get(`/api/auctions/${id}`)
-        .then((response) => {
-            setAuction(response.data);
-            setIsLoading(false);
-        })
-        .catch((error) => {
-            console.log(error);
-            setIsLoading(false);
-        });
-    }
-    , [id]);
+        const fetchData = async () => {
+            try {
+                const response = await ApiService.fetchAuctionById(id);
+                setAuction(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            }
+        }
+        fetchData();
+    }, [id]);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const validateForm = () => {
         if(parseFloat(bid) <= parseFloat(auction.lastPrice)) {
             alert("Bid must be higher than current price!");
-            return;
+            return false;
         }
         if(bidderEmail === "") {
             alert("Bidder email cannot be empty!");
+            return false;
+        }
+        return true;
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if(!validateForm()) {
             return;
         }
-        axios.patch(`http://localhost:3000/api/auctions/${id}`, {
-            lastPrice: bid,
+        const data = {
             lastBidderEmail: bidderEmail,
-        })
-        .then((response) => {
-            setAuction(response.data);
-            setIsLoading(false);
-        })
-        .catch((error) => {
-            console.log(error);
-            setIsLoading(false);
-        });
+            lastPrice: bid,
+        };
+        ApiService.updateAuction(id, data)
+            .then((response) => {
+                console.log(response.data);
+                setAuction(response.data); 
+                alert("Bid successfully!");
+                history.push("/auctions");
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Error!");
+            });
+        
     };
 
     if(isLoading) {
