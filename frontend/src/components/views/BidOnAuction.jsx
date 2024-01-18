@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import ApiService from "./../../service/ApiService";
 import { useParams } from "react-router-dom";
 import './AddAuction.css';
@@ -10,7 +10,7 @@ const BidOnAuction = () => {
     const [bid, setBid] = useState(0); 
     const [bidderEmail, setBidderEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true);
@@ -53,7 +53,7 @@ const BidOnAuction = () => {
                 console.log(response.data);
                 setAuction(response.data); 
                 alert("Bid successfully!");
-                history.push("/auctions");
+                navigate("/auctions");
             })
             .catch((error) => {
                 console.error(error);
