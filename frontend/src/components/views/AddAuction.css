@@ -1,6 +1,6 @@
 /* AddAuction.css */
 
-.add-auction-form {
+.auction-add {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -9,12 +9,23 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.add-auction-form label {
+.auction-add__title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auction-add form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auction-add label {
     display: block;
     margin-bottom: 8px;
 }
 
-.add-auction-form input, .add-auction-form textarea {
+.auction-add input,
+.auction-add textarea {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -22,8 +33,7 @@
     border-radius: 4px;
 }
 
-.add-auction-form button {
-    width: 100%;
+.auction-add input[type="submit"] {
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -32,6 +42,18 @@
     cursor: pointer;
 }
 
-.add-auction-form button:hover {
+.auction-add input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.auction-add .back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.auction-add .back-link:hover {
+    text-decoration: underline;
 }
