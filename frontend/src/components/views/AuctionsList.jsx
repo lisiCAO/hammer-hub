@@ -22,7 +22,7 @@ const AuctionsList = () => {
             setIsLoading(true);
             setError(null);
             try {
-                const response = await ApiService.fetchAuctions();
+                const response = await ApiService.getAuctions();
                 setAuctions(response.data);
             } catch (error) {
                 setError(error.message);

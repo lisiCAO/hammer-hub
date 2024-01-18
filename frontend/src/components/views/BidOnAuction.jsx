@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import ApiService from "./../../service/ApiService";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import './AddAuction.css';
 
 const BidOnAuction = () => {
@@ -48,7 +48,7 @@ const BidOnAuction = () => {
             lastBidderEmail: bidderEmail,
             lastPrice: bid,
         };
-        ApiService.updateAuction(id, data)
+        ApiService.patchAuction(id, data)
             .then((response) => {
                 console.log(response.data);
                 setAuction(response.data); 
@@ -92,6 +92,7 @@ const BidOnAuction = () => {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+            <Link to="/auctions"> View Auctions </Link>
         </div>
     );
 }
