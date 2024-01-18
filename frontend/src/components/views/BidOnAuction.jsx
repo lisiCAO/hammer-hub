@@ -12,11 +12,13 @@ const BidOnAuction = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+
+
     useEffect(() => {
         setIsLoading(true);
         const fetchData = async () => {
             try {
-                const response = await ApiService.fetchAuctionById(id);
+                const response = await ApiService.getAuctionById(id);
                 setAuction(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -28,16 +30,23 @@ const BidOnAuction = () => {
     }, [id]);
 
     const validateForm = () => {
-        if(parseFloat(bid) <= parseFloat(auction.lastPrice)) {
+        if (isNaN(bid) || parseFloat(bid) <= parseFloat(auction.lastPrice)) {
             alert("Bid must be higher than current price!");
             return false;
         }
-        if(bidderEmail === "") {
+    
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (bidderEmail === "") {
             alert("Bidder email cannot be empty!");
             return false;
+        } else if (!emailRegex.test(bidderEmail)) { 
+            alert("Bidder email is not valid!");
+            return false;
         }
+    
         return true;
     };
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -48,6 +57,7 @@ const BidOnAuction = () => {
             lastBidderEmail: bidderEmail,
             lastPrice: bid,
         };
+
         ApiService.patchAuction(id, data)
             .then((response) => {
                 console.log(response.data);
@@ -87,7 +97,7 @@ const BidOnAuction = () => {
                         type="number"
                         name="lastPrice"
                         value={bid}
-                        onChange={(event) => setBid(event.target.value)}
+                        onChange={(event) => setBid(parseFloat(event.target.value) || 0)}
                     />
                 </label>
                 <input type="submit" value="Submit" />
