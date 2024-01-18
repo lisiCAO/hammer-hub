@@ -80,7 +80,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 - **CAO, Lisi** - *Initial work* - [lisiCAO](https://github.com/lisiCAO)
 
-See also the list of [contributors](https://github.com/yourusername/hammer-hub/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/lisiCAO/hammer-hub/contributors) who participated in this project.
 
 ## License
 
@@ -88,6 +88,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- John Abbott College
