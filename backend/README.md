@@ -71,6 +71,8 @@ npm start
 5. **PUT `/api/auctions/:id`**: Replaces an auction.
 6. **DELETE `/api/auctions/:id`**: Deletes an auction.
 
+For a detailed API reference, please visit [Auction System API Documentation](https://documenter.getpostman.com/view/31315195/2s9YsRdVPi).
+
 ## Models
 
 ### Auction Model
