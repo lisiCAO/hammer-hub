@@ -88,6 +88,7 @@ const AddAuction = () => {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+            <Link to="/auctions"> Back to Auctions </Link>
         </div>
     );
 }
