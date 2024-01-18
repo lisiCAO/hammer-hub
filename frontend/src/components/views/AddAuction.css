@@ -1,0 +1,59 @@
+/* AddAuction.css */
+
+.auction-add {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auction-add__title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auction-add form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auction-add label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.auction-add input,
+.auction-add textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.auction-add input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.auction-add input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.auction-add .back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.auction-add .back-link:hover {
+    text-decoration: underline;
+}
