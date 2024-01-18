@@ -6,7 +6,7 @@ import {
 import AuctionsList from './components/views/AuctionsList';
 import BidOnAuction from './components/views/BidOnAuction';
 import AddAuction from './components/views/AddAuction';
-import Welcome from './Welcome';
+import Welcome from './components/Welcome';
 
 const router = createBrowserRouter ([
   {
