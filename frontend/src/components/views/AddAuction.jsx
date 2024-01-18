@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ApiService from "./../../services/ApiService";
+import ApiService from "./../../service/ApiService";
 import { useHistory } from 'react-router-dom';
 import "./AddAuction.css";
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ApiService from "./../../services/ApiService";
+import ApiService from "./../../service/ApiService";
 import { Link } from "react-router-dom";
 import "./AuctionsList.css";
 const AuctionItem = ({ auction }) => (
