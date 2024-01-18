@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ApiService from "./../../services/ApiService";
+import { Link } from "react-router-dom";
 import "./AuctionsList.css";
 const AuctionItem = ({ auction }) => (
     <li className="auctions-list__item">
@@ -7,6 +8,7 @@ const AuctionItem = ({ auction }) => (
         <p>{auction.itemDescription}</p>
         <p>Last Bid: ${auction.lastPrice}</p>
         <p>Last Bidder: {auction.lastBidderEmail}</p>
+        <Link to={`/auction/${auction.id}`}>Bid on This Auction</Link>
     </li>
 );
 
@@ -40,6 +42,7 @@ const AuctionsList = () => {
     return (
         <div className="auctions-list">
             <h1 className="auctions-list__title">Auctions</h1>
+            <Link to="/add-auction" className="add-auction-button">Add New Auction</Link> 
             {auctions.map((auction) => <AuctionItem key={auction.id} auction={auction} />)}
         </div>
     );

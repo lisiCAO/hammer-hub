@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ApiService from "./../../services/ApiService";
+import { useHistory } from 'react-router-dom';
 import "./AddAuction.css";
 
 const AddAuction = () => {
@@ -9,6 +10,8 @@ const AddAuction = () => {
         itemDescription: "",
         startingPrice: 0,
     });
+
+    const history = useHistory();
 
     const [formData, setFormData] = useState({ ...initialFormData })
 
@@ -32,6 +35,7 @@ const AddAuction = () => {
             console.log(response);
             alert(`${formData.itemName} successfully added!`);
             setFormData({ ...initialFormData });
+            history.push('/auctions'); 
         } catch (error) {
          console.error(error);
         }
