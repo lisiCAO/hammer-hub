@@ -1,37 +1,34 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../database');
-
-const Auction = sequelize.define('auction', {
+module.exports = (sequelize, DataTypes) => {
+    const Auction = sequelize.define('auction', {
         id: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        sellerEmail:{
-            type: Sequelize.STRING(320),
+        sellerEmail: {
+            type: DataTypes.STRING(320),
             allowNull: false
         },
-        itemName:{
-            type: Sequelize.STRING(100),
+        itemName: {
+            type: DataTypes.STRING(100),
             allowNull: false
         },
-        itemDescription:{
-            type: Sequelize.STRING(10000),
+        itemDescription: {
+            type: DataTypes.STRING(10000),
             allowNull: false
         },
-        lastPrice:{
-            type: Sequelize.DECIMAL(10, 2),
+        lastPrice: {
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
             validate: { min: 0 }
         },
-        lastBidderEmail:{
-            type: Sequelize.STRING(320),
+        lastBidderEmail: {
+            type: DataTypes.STRING(320),
             allowNull: true
         },
-    },
-    {
-        timestamps: false // Set timestamps to false
-    }
-);
+    }, {
+        timestamps: false 
+    });
 
-module.exports = Auction;
+    return Auction;
+};

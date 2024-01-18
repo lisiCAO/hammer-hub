@@ -1,6 +1,6 @@
 const express = require('express');
 const cors  = require('cors');
-const Auction = require('./models/Auction');
+const db = require('./models/index');
 const app = express();
 app.use(express.json());
 app.use(cors({
@@ -8,7 +8,7 @@ app.use(cors({
 }));
 app.post('/api/auctions', async (req, res) => {
     try{
-        const newAuction = await Auction.create(req.body);
+        const newAuction = await db.auction.create(req.body);
         res.status(201).json(newAuction);
     } catch (error){
         res.status(400).json({ message: error.message });
@@ -17,7 +17,7 @@ app.post('/api/auctions', async (req, res) => {
 
 app.get('/api/auctions', async (req, res) => {
     try{
-        const auctions = await Auction.findAll();
+        const auctions = await db.auction.findAll();
         res.json(auctions);
     } catch (error){
         res.status(500).json({ message: error.message });
@@ -26,7 +26,7 @@ app.get('/api/auctions', async (req, res) => {
 
 app.get('/api/auctions/:id', async (req, res) => {
     try{
-        const auction = await Auction.findByPk(req.params.id);
+        const auction = await db.auction.findByPk(req.params.id);
         res.json(auction);
     } catch (error){
         res.status(500).json({ message: error.message });
@@ -35,7 +35,7 @@ app.get('/api/auctions/:id', async (req, res) => {
 
 app.patch('/api/auctions/:id', async (req, res) => {
     try{
-        const auction = await Auction.findByPk(req.params.id);
+        const auction = await db.auction.findByPk(req.params.id);
         auction.update(req.body);
         res.json(auction);
     } catch (error){
@@ -45,7 +45,7 @@ app.patch('/api/auctions/:id', async (req, res) => {
 
 app.put('/api/auctions/:id', async (req, res) => {
     try{
-        const auction = await Auction.findByPk(req.params.id);
+        const auction = await db.auction.findByPk(req.params.id);
         auction.update(req.body);
         res.json(auction);
     } catch (error){
@@ -55,7 +55,7 @@ app.put('/api/auctions/:id', async (req, res) => {
 
 app.delete('/api/auctions/:id', async (req, res) => {
     try{
-        const auction = await Auction.findByPk(req.params.id);
+        const auction = await db.auction.findByPk(req.params.id);
         auction.destroy();
         res.json(auction);
     } catch (error){
