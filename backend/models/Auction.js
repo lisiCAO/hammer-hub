@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         sellerEmail: {
             type: DataTypes.STRING(320),
-            allowNull: false
+            allowNull: false,
+            validate: { isEmail: true }
         },
         itemName: {
             type: DataTypes.STRING(100),
@@ -15,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         itemDescription: {
             type: DataTypes.STRING(10000),
-            allowNull: false
+            allowNull: false,
+            validate: { len: [0, 10000] }
         },
         lastPrice: {
             type: DataTypes.DECIMAL(10, 2),
@@ -24,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         lastBidderEmail: {
             type: DataTypes.STRING(320),
-            allowNull: true
+            allowNull: true,
+            validate: { isEmail: true }
         },
     }, {
         timestamps: false 
